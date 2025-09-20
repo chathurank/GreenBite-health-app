@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact & Feedback | GreenBite</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" href="assets/favicon.ico" />
+</head>
+<body>
+  <nav id="navbar" aria-label="Primary"></nav>
+  <main>
+    <section class="page-hero">
+      <h1>Contact & Feedback</h1>
+      <p>We value your feedback! Reach out to us or check our FAQ for quick answers.</p>
+    </section>
+    <form id="contact-form" class="form-block" novalidate>
+      <label class="sr-only" for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Name" required autocomplete="name" />
+      <label class="sr-only" for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Email" required autocomplete="email" />
+      <label class="sr-only" for="message">Message</label>
+      <textarea id="message" name="message" placeholder="Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <div id="confirmation" class="thankyou-message" role="status" aria-live="polite"></div>
+    <div id="map" role="img" aria-label="Map placeholder for GreenBite HQ">
+      <!-- Embed map here -->
+    </div>
+    <section id="faq" class="faq-section" aria-labelledby="faq-title">
+      <h2 id="faq-title"><span class="faq-icon" aria-hidden="true">❓</span> Frequently Asked Questions</h2>
+      <div class="accordion">
+        <!-- FAQ items will be injected by JS -->
+      </div>
+    </section>
+  </main>
+  <footer></footer>
+  <script src="assets/contact.js" defer></script>
+</body>
+</html>

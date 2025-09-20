@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthy Recipes | GreenBite</title>
+  <link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" href="assets/favicon.ico">
+</head>
+<body>
+  <!-- Navbar (reuse from index.html) -->
+  <nav id="navbar"></nav>
+  <main>
+    <section class="recipes-hero">
+      <h1 id="recipes-page-title">Healthy Recipes</h1>
+      <p>Discover delicious, nutritious meals for every occasion. Filter and search to find your next favorite recipe!</p>
+    </section>
+    <div class="filter-search" role="search">
+      <label class="sr-only" for="search">Search recipes</label>
+      <input type="text" id="search" name="search" placeholder="Search recipes..." autocomplete="off">
+      <label class="sr-only" for="category-filter">Filter by category</label>
+      <select id="category-filter" name="category">
+        <option value="all">All Categories</option>
+        <option value="breakfast">Breakfast</option>
+        <option value="lunch">Lunch</option>
+        <option value="dinner">Dinner</option>
+        <option value="snack">Snack</option>
+      </select>
+    </div>
+    <div id="recipe-cards" class="recipe-grid" aria-live="polite"></div>
+    <!-- Modern dialog for full recipe -->
+    <dialog id="recipe-dialog" aria-labelledby="recipe-title" aria-modal="true">
+      <button id="dialog-close" aria-label="Close" class="close" type="button">&times;</button>
+      <div id="dialog-body"></div>
+    </dialog>
+  </main>
+  <footer></footer>
+  <script src="assets/recipes.js" defer></script>
+</body>
+</html>

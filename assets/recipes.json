@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": "Avocado Toast",
+    "category": "breakfast",
+    "image": "assets/avocado-toast.jpg",
+    "description": "A simple, healthy breakfast option.",
+    "ingredients": ["2 slices whole grain bread", "1 ripe avocado", "Salt", "Pepper", "Lemon juice"],
+    "steps": ["Toast the bread.", "Mash the avocado and spread on toast.", "Season with salt, pepper, and lemon juice."],
+    "nutrition": {"calories": 250, "protein": "6g", "carbs": "28g", "fat": "12g"}
+  },
+  {
+    "id": 2,
+    "title": "Quinoa Salad",
+    "category": "lunch",
+    "image": "assets/quinoa-salad.jpg",
+    "description": "A protein-packed lunch salad.",
+    "ingredients": ["1 cup cooked quinoa", "Cherry tomatoes", "Cucumber", "Feta cheese", "Olive oil", "Lemon juice"],
+    "steps": ["Mix all ingredients in a bowl.", "Drizzle with olive oil and lemon juice.", "Toss and serve."],
+    "nutrition": {"calories": 320, "protein": "10g", "carbs": "40g", "fat": "12g"}
+  },
+  {
+    "id": 3,
+    "title": "Berry Yogurt Parfait",
+    "category": "breakfast",
+    "image": "assets/berry-parfait.jpg",
+    "description": "Layers of yogurt, berries, and granola for a fresh start.",
+    "ingredients": ["1 cup Greek yogurt", "1/2 cup mixed berries", "1/4 cup granola", "Honey (optional)"],
+    "steps": ["Layer yogurt, berries, and granola in a glass.", "Drizzle with honey if desired.", "Serve chilled."],
+    "nutrition": {"calories": 220, "protein": "12g", "carbs": "32g", "fat": "4g"}
+  },
+  {
+    "id": 4,
+    "title": "Grilled Chicken Bowl",
+    "category": "dinner",
+    "image": "assets/grilled-chicken-bowl.jpg",
+    "description": "Lean grilled chicken with brown rice and veggies.",
+    "ingredients": ["1 grilled chicken breast", "1 cup brown rice", "Steamed broccoli", "Carrots", "Soy sauce"],
+    "steps": ["Grill chicken breast.", "Cook brown rice.", "Steam veggies.", "Combine in a bowl and drizzle with soy sauce."],
+    "nutrition": {"calories": 410, "protein": "32g", "carbs": "48g", "fat": "8g"}
+  },
+  {
+    "id": 5,
+    "title": "Veggie Wrap",
+    "category": "lunch",
+    "image": "assets/veggie-wrap.jpg",
+    "description": "A quick, colorful wrap packed with veggies.",
+    "ingredients": ["1 whole wheat tortilla", "Lettuce", "Tomato", "Cucumber", "Hummus", "Bell pepper"],
+    "steps": ["Spread hummus on tortilla.", "Add veggies.", "Wrap and slice."],
+    "nutrition": {"calories": 280, "protein": "7g", "carbs": "38g", "fat": "9g"}
+  },
+  {
+    "id": 6,
+    "title": "Chickpea Snack Bowl",
+    "category": "snack",
+    "image": "assets/chickpea-bowl.jpg",
+    "description": "Roasted chickpeas with spices for a crunchy snack.",
+    "ingredients": ["1 cup chickpeas", "Olive oil", "Paprika", "Salt", "Pepper"],
+    "steps": ["Toss chickpeas with oil and spices.", "Roast at 200°C for 25 min.", "Cool and serve."],
+    "nutrition": {"calories": 180, "protein": "6g", "carbs": "30g", "fat": "4g"}
+  },
+  {
+    "id": 7,
+    "title": "Salmon & Greens Salad",
+    "category": "dinner",
+    "image": "assets/salmon-salad.jpg",
+    "description": "Omega-rich salmon on a bed of leafy greens.",
+    "ingredients": ["1 salmon fillet", "Mixed greens", "Cherry tomatoes", "Olive oil", "Lemon juice"],
+    "steps": ["Grill or bake salmon.", "Toss greens and tomatoes with oil and lemon.", "Top with salmon."],
+    "nutrition": {"calories": 350, "protein": "28g", "carbs": "10g", "fat": "20g"}
+  },
+  {
+    "id": 8,
+    "title": "Banana Oat Cookies",
+    "category": "snack",
+    "image": "assets/banana-oat-cookies.jpg",
+    "description": "Simple cookies with banana, oats, and nuts.",
+    "ingredients": ["2 ripe bananas", "1 cup oats", "1/4 cup chopped nuts", "Cinnamon"],
+    "steps": ["Mash bananas.", "Mix with oats, nuts, and cinnamon.", "Bake at 180°C for 15 min."],
+    "nutrition": {"calories": 150, "protein": "4g", "carbs": "28g", "fat": "3g"}
+  }
+]

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenBite Wellness</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="icon" href="assets/favicon.ico" />
+  </head>
+  <body>
+    <!-- Responsive Navbar -->
+    <nav id="navbar" aria-label="Primary" class="navbar">
+      <div class="logo">GreenBite</div>
+      <button
+        class="hamburger"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="primary-menu"
+        type="button"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="primary-menu" role="menubar">
+        <li role="none">
+          <a role="menuitem" href="index.html" class="nav-link active">Home</a>
+        </li>
+        <li role="none">
+          <a role="menuitem" href="recipes.html" class="nav-link"
+            >Healthy Recipes</a
+          >
+        </li>
+        <li role="none">
+          <a role="menuitem" href="calculator.html" class="nav-link"
+            >Calorie Calculator</a
+          >
+        </li>
+        <li role="none">
+          <a role="menuitem" href="workout.html" class="nav-link"
+            >Workout Generator</a
+          >
+        </li>
+        <li role="none">
+          <a role="menuitem" href="mindfulness.html" class="nav-link"
+            >Mindfulness</a
+          >
+        </li>
+        <li role="none">
+          <a role="menuitem" href="contact.html" class="nav-link">Contact</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-overlay">
+        <h1 id="hero-quote">Welcome to GreenBite!</h1>
+        <p>
+          Promoting healthy living through balanced meals, exercise, and
+          mindfulness.
+        </p>
+      </div>
+    </section>
+    <!-- Health Tips -->
+    <section class="health-tips" aria-labelledby="daily-tip-title">
+      <span class="tip-icon" aria-hidden="true">💡</span>
+      <h2 id="daily-tip-title">Health Tip of the Day</h2>
+      <p id="tip-of-the-day" aria-live="polite"></p>
+    </section>
+    <!-- Newsletter & Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="recipes.html">Healthy Recipes</a></li>
+            <li><a href="calculator.html">Calorie Calculator</a></li>
+            <li><a href="workout.html">Workout Generator</a></li>
+            <li><a href="mindfulness.html">Mindfulness</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-newsletter">
+          <h3>Stay Connected</h3>
+          <form id="newsletter-form">
+            <label for="newsletter-email">Subscribe to our newsletter:</label>
+            <div class="newsletter-row">
+              <input
+                type="email"
+                id="newsletter-email"
+                required
+                placeholder="Your email"
+                autocomplete="email"
+              />
+              <button type="submit">Subscribe</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 GreenBite Wellness</p>
+      </div>
+    </footer>
+    <script src="assets/main.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workout Generator | GreenBite</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="icon" href="assets/favicon.ico" />
+</head>
+<body>
+  <nav id="navbar" aria-label="Primary"></nav>
+  <main>
+    <section class="page-hero">
+      <h1>Workout Generator</h1>
+      <p>Get a custom workout plan based on your goals and equipment. Stay active and healthy!</p>
+    </section>
+    <div class="workout-flex">
+      <form id="workout-form" class="form-block" novalidate>
+        <label for="body-part">Body Part:</label>
+        <select id="body-part" name="body-part">
+          <option value="full">Full Body</option>
+          <option value="arms">Arms</option>
+          <option value="legs">Legs</option>
+          <option value="core">Core</option>
+        </select>
+        <label for="equipment">Equipment:</label>
+        <select id="equipment" name="equipment">
+          <option value="none">None</option>
+          <option value="dumbbells">Dumbbells</option>
+        </select>
+        <button type="submit">Generate Workout</button>
+      </form>
+      <div class="results-block" id="workout-plan" aria-live="polite"></div>
+    </div>
+    <div id="timer" role="status" aria-live="polite"></div>
+  </main>
+  <footer></footer>
+  <script src="assets/workout.js" defer></script>
+</body>
+</html>
