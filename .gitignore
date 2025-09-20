@@ -1,0 +1,39 @@
+# Node modules
+node_modules/
+
+# Build output
+/dist/
+/build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# IDE files
+.vscode/
+.idea/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Misc
+*.swp
+*.swo
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Mac system files
+*.DS_Store
+
+# Coverage
+coverage/
+
+# Optional: ignore assets if generated
+# /assets/
