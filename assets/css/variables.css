@@ -2,6 +2,11 @@
 :root {
   --color-brand: #009C4D;
   --color-brand-700: #27ae60;
+  --color-brand-light: rgba(46, 204, 113, 0.1);
+  --color-success: #27ae60;
+  --color-success-light: #d5f4e6;
+  --color-success-dark: #1e8449;
+  --color-accent: #f39c12;
   --color-bg: #f7f9f8;
   --color-surface: #ffffff;
   --color-text: #222222;
@@ -29,4 +34,7 @@
   --shadow-sm: 0 1px 4px rgba(44, 204, 113, 0.08);
   --shadow-md: 0 2px 12px rgba(44, 204, 113, 0.1);
   --shadow-strong: 0 8px 32px var(--color-card-shadow-strong);
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.3s ease;
+  --transition-slow: 0.5s ease;
 }

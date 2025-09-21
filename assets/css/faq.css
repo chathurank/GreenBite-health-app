@@ -26,7 +26,15 @@
   margin-bottom: var(--space-3);
   box-shadow: var(--shadow-sm);
   border-left: 4px solid var(--color-brand);
+  overflow: hidden;
+  transition: all var(--transition-smooth);
 }
+
+.accordion-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
 .accordion-title {
   padding: var(--space-4);
   cursor: pointer;
@@ -34,13 +42,96 @@
   color: var(--color-brand);
   font-size: 1.08rem;
   letter-spacing: 0.5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all var(--transition-fast);
+  user-select: none;
 }
+
+.accordion-title:hover {
+  background: var(--color-accent-bg);
+}
+
+.accordion-title:focus {
+  outline: 2px solid var(--color-brand);
+  outline-offset: -2px;
+}
+
+.accordion-icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: transform var(--transition-fast);
+  color: var(--color-brand);
+  width: 20px;
+  text-align: center;
+}
+
+.accordion-title[aria-expanded="true"] .accordion-icon {
+  transform: rotate(45deg);
+}
+
 .accordion-content {
-  padding: var(--space-4);
-  display: none;
+  padding: 0 var(--space-4);
   color: var(--color-text);
   font-size: 1rem;
+  line-height: 1.6;
+  max-height: 0;
+  overflow: hidden;
+  transition: all var(--transition-smooth);
+  opacity: 0;
 }
+
 .accordion-content.active {
-  display: block;
+  padding: var(--space-4);
+  max-height: 200px;
+  opacity: 1;
+}
+
+/* Enhanced animations for accordion */
+@keyframes slideDown {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 200px;
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    max-height: 200px;
+    opacity: 1;
+  }
+  to {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+.accordion-content.active {
+  animation: slideDown var(--transition-smooth) ease-out;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .faq-section {
+    padding: var(--space-5) var(--space-4);
+    margin: var(--space-6) auto;
+  }
+  
+  .accordion-title {
+    font-size: 1rem;
+    padding: var(--space-3);
+  }
+  
+  .accordion-content {
+    padding: 0 var(--space-3);
+  }
+  
+  .accordion-content.active {
+    padding: var(--space-3);
+  }
 }

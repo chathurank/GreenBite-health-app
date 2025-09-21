@@ -58,11 +58,82 @@ function openModal(id) {
   if (!recipe || !dialog || !body) return;
 
   const titleId = 'recipe-title';
-  body.innerHTML = `<h2 id="${titleId}">${recipe.title}</h2>` +
-    `<img src="${recipe.image}" alt="${recipe.title}" style="width:100%;border-radius:8px;" loading="lazy" decoding="async">` +
-    `<h4>Ingredients</h4><ul>${recipe.ingredients.map(i => `<li>${i}</li>`).join('')}</ul>` +
-    `<h4>Steps</h4><ol>${recipe.steps.map(s => `<li>${s}</li>`).join('')}</ol>` +
-    `<h4>Nutrition Info</h4><table><tr><th>Calories</th><th>Protein</th><th>Carbs</th><th>Fat</th></tr><tr><td>${recipe.nutrition.calories}</td><td>${recipe.nutrition.protein}</td><td>${recipe.nutrition.carbs}</td><td>${recipe.nutrition.fat}</td></tr></table>`;
+  
+  // Check if recipe is saved
+  const savedRecipes = JSON.parse(localStorage.getItem('savedRecipes') || '[]');
+  const isSaved = savedRecipes.some(saved => saved.id === recipe.id);
+  
+  body.innerHTML = `
+    <h2 id="${titleId}">${recipe.title}</h2>
+    <div class="recipe-actions">
+      <button class="save-recipe-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveRecipe(${recipe.id})">
+        ${isSaved ? '❤️ Saved' : '🤍 Save Recipe'}
+      </button>
+      <div class="recipe-meta">
+        <span class="recipe-category">${recipe.category}</span>
+        <span class="recipe-difficulty">${recipe.difficulty}</span>
+      </div>
+    </div>
+    <img src="${recipe.image}" alt="${recipe.title}" style="width:100%;border-radius:8px;" loading="lazy" decoding="async">
+    
+    <div class="recipe-details">
+      <div class="recipe-info-grid">
+        <div class="info-item">
+          <strong>⏱️ Prep Time:</strong> ${recipe.prepTime}
+        </div>
+        <div class="info-item">
+          <strong>👥 Servings:</strong> ${recipe.servings}
+        </div>
+        <div class="info-item">
+          <strong>📊 Difficulty:</strong> ${recipe.difficulty}
+        </div>
+      </div>
+    </div>
+    
+    <h4>Ingredients</h4>
+    <ul class="ingredients-list">
+      ${recipe.ingredients.map(i => `<li>${i}</li>`).join('')}
+    </ul>
+    
+    <h4>Instructions</h4>
+    <ol class="steps-list">
+      ${recipe.steps.map((s, index) => `<li><span class="step-number">${index + 1}</span>${s}</li>`).join('')}
+    </ol>
+    
+    <h4>Nutrition Information</h4>
+    <table class="nutrition-table">
+      <thead>
+        <tr>
+          <th>Nutrient</th>
+          <th>Amount</th>
+          <th>% Daily Value*</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Calories</td>
+          <td>${recipe.nutrition.calories}</td>
+          <td>${Math.round((recipe.nutrition.calories / 2000) * 100)}%</td>
+        </tr>
+        <tr>
+          <td>Protein</td>
+          <td>${recipe.nutrition.protein}</td>
+          <td>${Math.round((parseInt(recipe.nutrition.protein) / 50) * 100)}%</td>
+        </tr>
+        <tr>
+          <td>Carbohydrates</td>
+          <td>${recipe.nutrition.carbs}</td>
+          <td>${Math.round((parseInt(recipe.nutrition.carbs) / 300) * 100)}%</td>
+        </tr>
+        <tr>
+          <td>Fat</td>
+          <td>${recipe.nutrition.fat}</td>
+          <td>${Math.round((parseInt(recipe.nutrition.fat) / 65) * 100)}%</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="nutrition-note">*Percent Daily Values are based on a 2,000 calorie diet.</p>
+  `;
 
   // Remember the last focused element and restore on close
   const active = document.activeElement;
@@ -72,6 +143,47 @@ function openModal(id) {
     dialog.showModal();
   } else {
     dialog.setAttribute('open', '');
+  }
+}
+
+// Recipe saving functionality
+function toggleSaveRecipe(recipeId) {
+  const recipe = recipes.find(r => r.id === recipeId);
+  if (!recipe) return;
+  
+  let savedRecipes = JSON.parse(localStorage.getItem('savedRecipes') || '[]');
+  const existingIndex = savedRecipes.findIndex(saved => saved.id === recipeId);
+  
+  if (existingIndex > -1) {
+    // Remove from saved
+    savedRecipes.splice(existingIndex, 1);
+    localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
+    
+    // Update button
+    const btn = document.querySelector('.save-recipe-btn');
+    btn.textContent = '🤍 Save Recipe';
+    btn.classList.remove('saved');
+    
+    if (typeof window.showCustomAlert === 'function') {
+      window.showCustomAlert('Recipe removed from saved recipes.', 'info');
+    }
+  } else {
+    // Add to saved
+    const savedRecipe = {
+      ...recipe,
+      savedDate: new Date().toISOString()
+    };
+    savedRecipes.push(savedRecipe);
+    localStorage.setItem('savedRecipes', JSON.stringify(savedRecipes));
+    
+    // Update button
+    const btn = document.querySelector('.save-recipe-btn');
+    btn.textContent = '❤️ Saved';
+    btn.classList.add('saved');
+    
+    if (typeof window.showCustomAlert === 'function') {
+      window.showCustomAlert('Recipe saved to your favorites!', 'success');
+    }
   }
 }
 

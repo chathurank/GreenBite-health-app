@@ -1,40 +1,202 @@
-// Contact & Feedback Form
+// Enhanced Contact & Feedback Form with better validation
 const contactForm = document.getElementById('contact-form');
 contactForm?.addEventListener('submit', function(e) {
   e.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
-  if (!name || !email.includes('@') || !message) {
-    alert('Please fill out all fields with valid information.');
+  
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const messageInput = document.getElementById('message');
+  
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
+  const message = messageInput.value.trim();
+  
+  // Reset any previous error styles
+  [nameInput, emailInput, messageInput].forEach(input => {
+    input.style.borderColor = '';
+  });
+  
+  // Validation
+  let hasErrors = false;
+  
+  if (!name || name.length < 2) {
+    showFieldError(nameInput, 'Name must be at least 2 characters long.');
+    hasErrors = true;
+  }
+  
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !emailRegex.test(email)) {
+    showFieldError(emailInput, 'Please enter a valid email address.');
+    hasErrors = true;
+  }
+  
+  if (!message || message.length < 10) {
+    showFieldError(messageInput, 'Message must be at least 10 characters long.');
+    hasErrors = true;
+  }
+  
+  if (hasErrors) {
     return;
   }
-  // Store feedback in localStorage
-  let feedback = JSON.parse(localStorage.getItem('feedbacks') || '[]');
-  feedback.push({ name, email, message, date: new Date().toISOString() });
-  localStorage.setItem('feedbacks', JSON.stringify(feedback));
-  alert('Thank you for your feedback!');
+  
+  // Store feedback in localStorage with enhanced data
+  let feedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
+  const newFeedback = {
+    id: Date.now(),
+    name: name,
+    email: email,
+    message: message,
+    timestamp: new Date().toISOString(),
+    status: 'unread'
+  };
+  
+  feedbacks.push(newFeedback);
+  localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+  
+  // Show success message with custom alert
+  if (typeof window.showCustomAlert === 'function') {
+    window.showCustomAlert('Thank you for your feedback! We will get back to you soon.', 'success');
+  } else {
+    alert('Thank you for your feedback!');
+  }
+  
   contactForm.reset();
 });
 
-// FAQ Accordion
+// Enhanced error display function
+function showFieldError(field, message) {
+  field.style.borderColor = '#e74c3c';
+  field.style.borderWidth = '2px';
+  
+  // Remove existing error messages
+  const existingError = field.parentNode.querySelector('.field-error');
+  if (existingError) {
+    existingError.remove();
+  }
+  
+  // Add new error message
+  const errorDiv = document.createElement('div');
+  errorDiv.className = 'field-error';
+  errorDiv.textContent = message;
+  errorDiv.style.cssText = `
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    font-weight: 500;
+  `;
+  
+  field.parentNode.appendChild(errorDiv);
+  
+  // Remove error on focus
+  field.addEventListener('focus', function() {
+    field.style.borderColor = '';
+    field.style.borderWidth = '';
+    errorDiv.remove();
+  }, { once: true });
+}
+
+// Enhanced FAQ Accordion with animations
 const faqs = [
-  { q: "What is GreenBite?", a: "GreenBite is a wellness brand promoting healthy living." },
-  { q: "How do I subscribe to the newsletter?", a: "Use the form at the bottom of the home page." },
-  { q: "Is my data safe?", a: "We only store minimal data in your browser's localStorage." }
+  { 
+    q: "What is GreenBite?", 
+    a: "GreenBite is a comprehensive wellness platform that promotes healthy living through balanced nutrition, regular exercise, and mindfulness practices. We provide tools and resources to help you achieve your health and wellness goals." 
+  },
+  { 
+    q: "How do I subscribe to the newsletter?", 
+    a: "You can subscribe to our newsletter using the form at the bottom of any page. Simply enter your email address and click 'Subscribe'. You'll receive weekly health tips, recipes, and wellness advice." 
+  },
+  { 
+    q: "Is my data safe with GreenBite?", 
+    a: "Yes, your privacy is important to us. We only store minimal data in your browser's localStorage for functionality purposes. We do not collect or share personal information with third parties." 
+  },
+  {
+    q: "Can I use GreenBite on mobile devices?",
+    a: "Absolutely! GreenBite is fully responsive and works seamlessly on all devices including smartphones, tablets, and desktops. You can also install it as a Progressive Web App (PWA) for an app-like experience."
+  },
+  {
+    q: "Are the recipes suitable for special diets?",
+    a: "Our recipe collection includes options for various dietary preferences. You can use the filter feature to find recipes that match your specific dietary needs and preferences."
+  }
 ];
+
 const accordion = document.querySelector('.accordion');
 if (accordion) {
   faqs.forEach((faq, idx) => {
     const item = document.createElement('div');
     item.className = 'accordion-item';
-    item.innerHTML = `<div class='accordion-title' data-idx='${idx}'>${faq.q}</div><div class='accordion-content'>${faq.a}</div>`;
+    item.innerHTML = `
+      <div class='accordion-title' data-idx='${idx}' role='button' tabindex='0' aria-expanded='false'>
+        ${faq.q}
+        <span class='accordion-icon'>+</span>
+      </div>
+      <div class='accordion-content' id='content-${idx}' aria-hidden='true'>${faq.a}</div>
+    `;
     accordion.appendChild(item);
   });
+  
+  // Enhanced accordion functionality with keyboard support
   accordion.querySelectorAll('.accordion-title').forEach(title => {
-    title.addEventListener('click', function() {
-      const content = this.nextElementSibling;
-      content.classList.toggle('active');
+    title.addEventListener('click', toggleAccordion);
+    title.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleAccordion.call(this);
+      }
     });
   });
 }
+
+function toggleAccordion() {
+  const content = this.nextElementSibling;
+  const icon = this.querySelector('.accordion-icon');
+  const isActive = content.classList.contains('active');
+  
+  // Close all other accordions
+  accordion.querySelectorAll('.accordion-content').forEach(c => {
+    c.classList.remove('active');
+    c.setAttribute('aria-hidden', 'true');
+  });
+  
+  accordion.querySelectorAll('.accordion-title').forEach(t => {
+    t.setAttribute('aria-expanded', 'false');
+    const i = t.querySelector('.accordion-icon');
+    if (i) i.textContent = '+';
+  });
+  
+  // Toggle current accordion
+  if (!isActive) {
+    content.classList.add('active');
+    content.setAttribute('aria-hidden', 'false');
+    this.setAttribute('aria-expanded', 'true');
+    icon.textContent = '−';
+  }
+}
+
+// Initialize map placeholder
+document.addEventListener('DOMContentLoaded', function() {
+  const mapDiv = document.getElementById('map');
+  if (mapDiv) {
+    mapDiv.innerHTML = `
+      <div style="
+        width: 100%;
+        height: 300px;
+        background: linear-gradient(135deg, var(--color-accent-bg) 0%, var(--color-brand-light) 100%);
+        border-radius: var(--radius-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-brand);
+        font-weight: 600;
+        font-size: 1.1rem;
+        text-align: center;
+        padding: var(--space-4);
+        margin: var(--space-7) auto;
+        border: 2px solid var(--color-brand);
+        box-shadow: var(--shadow-md);
+      ">
+        📍 GreenBite HQ<br>
+        <small style="font-weight: 400; opacity: 0.8;">123 Wellness Street, Health City, HC 12345</small>
+      </div>
+    `;
+  }
+});

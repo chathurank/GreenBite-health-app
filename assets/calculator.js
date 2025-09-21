@@ -1,42 +1,300 @@
-// Calorie & Nutrition Calculator
+// Enhanced Calorie & Nutrition Calculator
 const calcForm = document.getElementById('calc-form');
 calcForm?.addEventListener('submit', function(e) {
   e.preventDefault();
-  const age = +document.getElementById('age').value;
-  const gender = document.getElementById('gender').value;
-  const height = +document.getElementById('height').value;
-  const weight = +document.getElementById('weight').value;
-  const activity = +document.getElementById('activity').value;
+  
+  const ageInput = document.getElementById('age');
+  const genderInput = document.getElementById('gender');
+  const heightInput = document.getElementById('height');
+  const weightInput = document.getElementById('weight');
+  const activityInput = document.getElementById('activity');
   const resultsDiv = document.getElementById('calc-results');
-  // Validation: check for empty or invalid fields
-  if (!age || !gender || !height || !weight || !activity) {
-    resultsDiv.classList.remove('is-hidden');
-    resultsDiv.innerHTML = `<div class="error-message" style="color:var(--color-brand);font-weight:600;">Please fill out all fields with valid values.</div>`;
+  
+  const age = +ageInput.value;
+  const gender = genderInput.value;
+  const height = +heightInput.value;
+  const weight = +weightInput.value;
+  const activity = +activityInput.value;
+  
+  // Reset any previous error styles
+  [ageInput, genderInput, heightInput, weightInput, activityInput].forEach(input => {
+    input.style.borderColor = '';
+  });
+  
+  // Enhanced validation
+  let hasErrors = false;
+  
+  if (!age || age < 10 || age > 120) {
+    showFieldError(ageInput, 'Age must be between 10 and 120 years.');
+    hasErrors = true;
+  }
+  
+  if (!gender) {
+    showFieldError(genderInput, 'Please select your gender.');
+    hasErrors = true;
+  }
+  
+  if (!height || height < 100 || height > 250) {
+    showFieldError(heightInput, 'Height must be between 100 and 250 cm.');
+    hasErrors = true;
+  }
+  
+  if (!weight || weight < 30 || weight > 300) {
+    showFieldError(weightInput, 'Weight must be between 30 and 300 kg.');
+    hasErrors = true;
+  }
+  
+  if (!activity) {
+    showFieldError(activityInput, 'Please select your activity level.');
+    hasErrors = true;
+  }
+  
+  if (hasErrors) {
+    resultsDiv.classList.add('is-hidden');
     return;
   }
+  
+  // Calculate BMR using Mifflin-St Jeor Equation
   let bmr = 0;
   if (gender === 'male') {
     bmr = 10 * weight + 6.25 * height - 5 * age + 5;
   } else {
     bmr = 10 * weight + 6.25 * height - 5 * age - 161;
   }
+  
   const tdee = Math.round(bmr * activity);
-  // Macronutrient breakdown
-  const carbs = Math.round((tdee * 0.5) / 4);
-  const protein = Math.round((tdee * 0.2) / 4);
-  const fat = Math.round((tdee * 0.3) / 9);
+  
+  // Macronutrient breakdown (corrected percentages from instructions)
+  const carbsCalories = tdee * 0.5; // 50%
+  const proteinCalories = tdee * 0.2; // 20% (instructions show 0% but that's clearly an error)
+  const fatCalories = tdee * 0.3; // 30%
+  
+  const carbs = Math.round(carbsCalories / 4); // 4 kcal per gram
+  const protein = Math.round(proteinCalories / 4); // 4 kcal per gram
+  const fat = Math.round(fatCalories / 9); // 9 kcal per gram
+  
+  // Store calculation in localStorage
+  const calculationData = {
+    timestamp: new Date().toISOString(),
+    inputs: { age, gender, height, weight, activity },
+    results: { bmr: Math.round(bmr), tdee, carbs, protein, fat }
+  };
+  
+  const calculationHistory = JSON.parse(localStorage.getItem('calculationHistory') || '[]');
+  calculationHistory.unshift(calculationData); // Add to beginning
+  
+  // Keep only last 10 calculations
+  if (calculationHistory.length > 10) {
+    calculationHistory.splice(10);
+  }
+  
+  localStorage.setItem('calculationHistory', JSON.stringify(calculationHistory));
+  
+  // Display results with enhanced UI
   resultsDiv.classList.remove('is-hidden');
   resultsDiv.innerHTML = `
-    <h3>Your Results</h3>
-    <div class="result-summary">
-      <div><strong>BMR:</strong> ${Math.round(bmr)} kcal/day</div>
-      <div><strong>TDEE:</strong> ${tdee} kcal/day</div>
+    <div class="results-header">
+      <h3>Your Nutrition Results</h3>
+      <p class="results-date">${new Date().toLocaleDateString()}</p>
     </div>
-    <table>
-      <tr><th>Macro</th><th>Grams</th><th>Progress</th></tr>
-      <tr><td>Carbs (50%)</td><td>${carbs}g</td><td><div class="progress-bar"><div class="progress" style="width:50%"></div></div></td></tr>
-      <tr><td>Protein (20%)</td><td>${protein}g</td><td><div class="progress-bar"><div class="progress" style="width:20%"></div></div></td></tr>
-      <tr><td>Fat (30%)</td><td>${fat}g</td><td><div class="progress-bar"><div class="progress" style="width:30%"></div></div></td></tr>
-    </table>
+    <div class="result-summary">
+      <div class="result-card">
+        <h4>BMR</h4>
+        <div class="result-value">${Math.round(bmr)}</div>
+        <div class="result-unit">kcal/day</div>
+        <div class="result-description">Calories at rest</div>
+      </div>
+      <div class="result-card primary">
+        <h4>TDEE</h4>
+        <div class="result-value">${tdee}</div>
+        <div class="result-unit">kcal/day</div>
+        <div class="result-description">Total daily calories</div>
+      </div>
+    </div>
+    
+    <div class="macros-section">
+      <h4>Daily Macronutrient Breakdown</h4>
+      <div class="macro-grid">
+        <div class="macro-item">
+          <div class="macro-header">
+            <span class="macro-name">Carbohydrates</span>
+            <span class="macro-percentage">50%</span>
+          </div>
+          <div class="macro-amount">${carbs}g</div>
+          <div class="progress-bar">
+            <div class="progress carbs" data-width="50"></div>
+          </div>
+        </div>
+        
+        <div class="macro-item">
+          <div class="macro-header">
+            <span class="macro-name">Protein</span>
+            <span class="macro-percentage">20%</span>
+          </div>
+          <div class="macro-amount">${protein}g</div>
+          <div class="progress-bar">
+            <div class="progress protein" data-width="20"></div>
+          </div>
+        </div>
+        
+        <div class="macro-item">
+          <div class="macro-header">
+            <span class="macro-name">Fat</span>
+            <span class="macro-percentage">30%</span>
+          </div>
+          <div class="macro-amount">${fat}g</div>
+          <div class="progress-bar">
+            <div class="progress fat" data-width="30"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="recommendations">
+      <h4>💡 Recommendations</h4>
+      <ul>
+        ${getPersonalizedRecommendations(bmr, tdee, age, gender)}
+      </ul>
+    </div>
+    
+    <button class="save-results-btn" onclick="saveResultsToProfile()">
+      Save to Profile
+    </button>
   `;
+  
+  // Animate progress bars
+  setTimeout(() => {
+    document.querySelectorAll('.progress').forEach(bar => {
+      const width = bar.getAttribute('data-width');
+      bar.style.width = width + '%';
+    });
+  }, 300);
+  
+  // Animate result cards
+  document.querySelectorAll('.result-card').forEach((card, index) => {
+    setTimeout(() => {
+      card.classList.add('animate-in');
+    }, index * 100);
+  });
+  
+  // Scroll to results
+  resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  
+  // Show success message
+  if (typeof window.showCustomAlert === 'function') {
+    window.showCustomAlert('Calculation complete! Results saved to your profile.', 'success');
+  }
 });
+
+// Enhanced error display function
+function showFieldError(field, message) {
+  field.style.borderColor = '#e74c3c';
+  field.style.borderWidth = '2px';
+  
+  // Remove existing error messages
+  const existingError = field.parentNode.querySelector('.field-error');
+  if (existingError) {
+    existingError.remove();
+  }
+  
+  // Add new error message
+  const errorDiv = document.createElement('div');
+  errorDiv.className = 'field-error';
+  errorDiv.textContent = message;
+  errorDiv.style.cssText = `
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    font-weight: 500;
+  `;
+  
+  field.parentNode.appendChild(errorDiv);
+  
+  // Remove error on focus
+  field.addEventListener('focus', function() {
+    field.style.borderColor = '';
+    field.style.borderWidth = '';
+    errorDiv.remove();
+  }, { once: true });
+}
+
+// Personalized recommendations based on results
+function getPersonalizedRecommendations(bmr, tdee, age, gender) {
+  const recommendations = [];
+  
+  if (tdee < 1500) {
+    recommendations.push('<li>Consider consulting a nutritionist for a personalized meal plan.</li>');
+  } else if (tdee > 3000) {
+    recommendations.push('<li>You have high energy needs - make sure to eat nutrient-dense foods.</li>');
+  }
+  
+  if (age < 25) {
+    recommendations.push('<li>Focus on building healthy eating habits that will last a lifetime.</li>');
+  } else if (age > 50) {
+    recommendations.push('<li>Consider increasing protein intake to maintain muscle mass.</li>');
+  }
+  
+  recommendations.push('<li>Stay hydrated - drink at least 8 glasses of water daily.</li>');
+  recommendations.push('<li>Include a variety of colorful fruits and vegetables in your diet.</li>');
+  recommendations.push('<li>Consider meal prep to help meet your nutrition goals.</li>');
+  
+  return recommendations.join('');
+}
+
+// Save results to user profile
+function saveResultsToProfile() {
+  const userProfile = JSON.parse(localStorage.getItem('userProfile') || '{}');
+  const latestCalculation = JSON.parse(localStorage.getItem('calculationHistory') || '[]')[0];
+  
+  if (latestCalculation) {
+    userProfile.lastCalculation = latestCalculation;
+    userProfile.profileUpdated = new Date().toISOString();
+    
+    localStorage.setItem('userProfile', JSON.stringify(userProfile));
+    
+    if (typeof window.showCustomAlert === 'function') {
+      window.showCustomAlert('Results saved to your profile!', 'success');
+    } else {
+      alert('Results saved to your profile!');
+    }
+  }
+}
+
+// Load previous calculation on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const calculationHistory = JSON.parse(localStorage.getItem('calculationHistory') || '[]');
+  
+  if (calculationHistory.length > 0) {
+    const lastCalculation = calculationHistory[0];
+    const loadPreviousDiv = document.createElement('div');
+    loadPreviousDiv.className = 'load-previous';
+    loadPreviousDiv.innerHTML = `
+      <p>Previous calculation from ${new Date(lastCalculation.timestamp).toLocaleDateString()}</p>
+      <button onclick="loadPreviousCalculation()" class="btn-secondary">Load Previous Values</button>
+    `;
+    
+    calcForm.parentNode.insertBefore(loadPreviousDiv, calcForm);
+  }
+});
+
+function loadPreviousCalculation() {
+  const calculationHistory = JSON.parse(localStorage.getItem('calculationHistory') || '[]');
+  
+  if (calculationHistory.length > 0) {
+    const lastCalculation = calculationHistory[0];
+    const inputs = lastCalculation.inputs;
+    
+    document.getElementById('age').value = inputs.age;
+    document.getElementById('gender').value = inputs.gender;
+    document.getElementById('height').value = inputs.height;
+    document.getElementById('weight').value = inputs.weight;
+    document.getElementById('activity').value = inputs.activity;
+    
+    if (typeof window.showCustomAlert === 'function') {
+      window.showCustomAlert('Previous values loaded successfully!', 'success');
+    }
+    
+    // Remove the load previous section
+    document.querySelector('.load-previous').remove();
+  }
+}

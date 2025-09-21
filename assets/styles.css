@@ -115,8 +115,221 @@
   border-radius: var(--radius-xl);
   box-shadow: 0 2px 8px rgba(44, 204, 113, 0.1);
   text-align: center;
-  max-width: 320px;
+  max-width: 400px;
   letter-spacing: 1px;
+  transition: all var(--transition-smooth);
+}
+
+#timer.warning {
+  background: #fff3cd;
+  border: 2px solid #ffc107;
+  animation: pulse 0.5s ease-in-out infinite;
+}
+
+#timer.complete {
+  background: var(--color-success-light);
+  border: 2px solid var(--color-success);
+}
+
+.timer-display h3 {
+  margin: 0 0 var(--space-3) 0;
+  color: var(--color-brand);
+}
+
+.time-remaining {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-brand);
+  margin: var(--space-3) 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-ring {
+  width: 60px;
+  height: 60px;
+  border: 4px solid var(--color-brand-light);
+  border-radius: 50%;
+  margin: var(--space-3) auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-brand);
+  border-radius: 50%;
+  animation: countdown linear infinite;
+  transform-origin: center;
+}
+
+@keyframes countdown {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(0); opacity: 0.5; }
+}
+
+.stop-timer-btn {
+  background: #e74c3c;
+  border: none;
+  color: white;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  margin-top: var(--space-3);
+  transition: all var(--transition-fast);
+}
+
+.stop-timer-btn:hover {
+  background: #c0392b;
+  transform: translateY(-1px);
+}
+
+/* Enhanced workout plan styling */
+.workout-summary {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin: var(--space-4) 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.workout-summary p {
+  margin: var(--space-2) 0;
+  color: var(--color-text);
+}
+
+.exercise-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: var(--space-4) 0;
+}
+
+.exercise-item {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid var(--color-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all var(--transition-smooth);
+}
+
+.exercise-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.exercise-item.active {
+  border-left-color: var(--color-accent);
+  background: #fff8e1;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.exercise-item.completed {
+  border-left-color: var(--color-success);
+  background: var(--color-success-light);
+}
+
+.exercise-item.completed .exercise-info h4::after {
+  content: ' ✅';
+}
+
+.exercise-info h4 {
+  margin: 0 0 var(--space-1) 0;
+  color: var(--color-brand);
+  font-size: 1.1rem;
+}
+
+.exercise-description {
+  margin: 0 0 var(--space-1) 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.exercise-duration {
+  font-weight: 600;
+  color: var(--color-brand);
+  font-size: 0.9rem;
+}
+
+.start-exercise-btn {
+  background: var(--color-brand);
+  color: white;
+  border: none;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all var(--transition-fast);
+  min-width: 100px;
+}
+
+.start-exercise-btn:hover {
+  background: var(--color-brand-700);
+  transform: translateY(-1px);
+}
+
+.start-exercise-btn.loading {
+  background: var(--color-muted);
+  cursor: not-allowed;
+}
+
+.start-full-workout-btn {
+  background: var(--color-accent);
+  color: white;
+  border: none;
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: var(--space-4);
+  width: 100%;
+  transition: all var(--transition-fast);
+}
+
+.start-full-workout-btn:hover {
+  background: #e67e22;
+  transform: translateY(-2px);
+}
+
+.timer-complete, .rest-display, .workout-complete {
+  text-align: center;
+  padding: var(--space-4);
+}
+
+.workout-complete h2 {
+  color: var(--color-success);
+  margin-bottom: var(--space-3);
+}
+
+.rest-display {
+  background: #e3f2fd;
+  border-radius: var(--radius-lg);
+}
+
+/* Responsive workout styling */
+@media (max-width: 768px) {
+  .exercise-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+  
+  .start-exercise-btn {
+    width: 100%;
+  }
+  
+  .time-remaining {
+    font-size: 2.5rem;
+  }
 }
 /* Workout page side-by-side layout */
 .workout-flex {
@@ -205,12 +418,246 @@
   box-shadow: 0 2px 12px rgba(44,204,113,0.10);
   padding: 32px 28px 24px 28px;
   min-width: 260px;
-  max-width: 400px;
+  max-width: 500px;
   margin-top: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
+}
+
+/* Enhanced calculator results styling */
+.results-header {
+  width: 100%;
+  text-align: center;
+  border-bottom: 2px solid var(--color-accent-bg);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.results-header h3 {
+  color: var(--color-brand);
+  margin: 0 0 var(--space-1) 0;
+  font-size: 1.4rem;
+}
+
+.results-date {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.result-summary {
+  display: flex;
+  gap: var(--space-4);
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+}
+
+.result-card {
+  background: var(--color-accent-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  text-align: center;
+  flex: 1;
+  transition: all var(--transition-smooth);
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.result-card.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.result-card.primary {
+  background: linear-gradient(135deg, var(--color-brand), var(--color-brand-700));
+  color: white;
+}
+
+.result-card h4 {
+  margin: 0 0 var(--space-2) 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.result-card.primary h4 {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.result-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: var(--space-1) 0;
+  color: var(--color-brand);
+}
+
+.result-card.primary .result-value {
+  color: white;
+}
+
+.result-unit {
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.7;
+  margin-bottom: var(--space-1);
+}
+
+.result-description {
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+.macros-section {
+  width: 100%;
+  margin: var(--space-5) 0;
+}
+
+.macros-section h4 {
+  color: var(--color-brand);
+  margin: 0 0 var(--space-4) 0;
+  font-size: 1.1rem;
+}
+
+.macro-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.macro-item {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+}
+
+.macro-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2);
+}
+
+.macro-name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.macro-percentage {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.macro-amount {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-brand);
+  margin-bottom: var(--space-2);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--color-accent-bg);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  border-radius: 4px;
+  width: 0;
+  transition: width 1s ease-in-out;
+}
+
+.progress.carbs {
+  background: linear-gradient(90deg, #f39c12, #e67e22);
+}
+
+.progress.protein {
+  background: linear-gradient(90deg, #e74c3c, #c0392b);
+}
+
+.progress.fat {
+  background: linear-gradient(90deg, #9b59b6, #8e44ad);
+}
+
+.recommendations {
+  width: 100%;
+  background: var(--color-success-light);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  border-left: 4px solid var(--color-success);
+}
+
+.recommendations h4 {
+  color: var(--color-success-dark);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.recommendations ul {
+  margin: 0;
+  padding-left: var(--space-4);
+  color: var(--color-success-dark);
+}
+
+.recommendations li {
+  margin-bottom: var(--space-1);
+}
+
+.save-results-btn {
+  width: 100%;
+  background: var(--color-success);
+  color: white;
+  border: none;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-top: var(--space-3);
+}
+
+.save-results-btn:hover {
+  background: var(--color-success-dark);
+  transform: translateY(-1px);
+}
+
+.load-previous {
+  background: var(--color-accent-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
+  text-align: center;
+  border: 1px solid var(--color-brand-light);
+}
+
+.load-previous p {
+  margin: 0 0 var(--space-2) 0;
+  color: var(--color-text);
+}
+
+/* Responsive calculator styling */
+@media (max-width: 768px) {
+  .result-summary {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  
+  .results-block {
+    max-width: 100%;
+    padding: var(--space-5);
+  }
+  
+  .result-value {
+    font-size: 1.8rem;
+  }
 }
 .results-block h3 {
   color: var(--color-brand);
@@ -331,6 +778,81 @@
   margin-bottom: 18px;
   font-weight: 700;
 }
+
+.recipe-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-4);
+  padding: var(--space-3);
+  background: var(--color-accent-bg);
+  border-radius: var(--radius-md);
+}
+
+.save-recipe-btn {
+  background: var(--color-surface);
+  border: 2px solid var(--color-brand);
+  color: var(--color-brand);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.save-recipe-btn:hover {
+  background: var(--color-brand);
+  color: white;
+}
+
+.save-recipe-btn.saved {
+  background: var(--color-brand);
+  color: white;
+}
+
+.recipe-meta {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.recipe-category {
+  background: var(--color-accent);
+  color: white;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.recipe-difficulty {
+  background: var(--color-muted);
+  color: white;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.recipe-details {
+  margin: var(--space-4) 0;
+}
+
+.recipe-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-2);
+  background: var(--color-surface);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+.info-item {
+  font-size: 0.9rem;
+  color: var(--color-text);
+}
+
 #dialog-body img {
   width: 100%;
   border-radius: 12px;
@@ -342,12 +864,59 @@
   color: var(--color-brand);
   margin-top: 18px;
   margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
-#dialog-body ul, #dialog-body ol {
-  margin-bottom: 12px;
-  padding-left: 18px;
+
+.ingredients-list {
+  background: var(--color-accent-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  margin-bottom: var(--space-4);
 }
-#dialog-body table {
+
+.ingredients-list li {
+  margin-bottom: var(--space-2);
+  padding: var(--space-2);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--color-brand);
+}
+
+.steps-list {
+  counter-reset: step-counter;
+  padding-left: 0;
+}
+
+.steps-list li {
+  counter-increment: step-counter;
+  margin-bottom: var(--space-3);
+  padding: var(--space-3);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-brand);
+  position: relative;
+  padding-left: 50px;
+}
+
+.step-number {
+  position: absolute;
+  left: var(--space-3);
+  top: var(--space-3);
+  background: var(--color-brand);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.nutrition-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 12px;
@@ -355,17 +924,41 @@
   border-radius: 8px;
   overflow: hidden;
   font-size: 1rem;
+  box-shadow: var(--shadow-sm);
 }
-#dialog-body th, #dialog-body td {
-  padding: 8px;
-  text-align: center;
-}
-#dialog-body th {
+
+.nutrition-table thead {
   background: var(--color-brand);
-  color: #fff;
 }
-#dialog-body tr:nth-child(even) {
+
+.nutrition-table th {
+  padding: var(--space-3);
+  text-align: left;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.nutrition-table td {
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nutrition-table tbody tr:nth-child(even) {
   background: #f7f9f8;
+}
+
+.nutrition-table tbody tr:hover {
+  background: var(--color-brand-light);
+}
+
+.nutrition-note {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+  font-style: italic;
+  margin-top: var(--space-2);
+  text-align: center;
 }
 #dialog-close {
   position: absolute;
