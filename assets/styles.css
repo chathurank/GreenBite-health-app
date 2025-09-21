@@ -379,17 +379,8 @@
 }
 .results-block button {
   margin-left: 1rem;
-  background: var(--color-brand);
-  color: #fff;
-  border: none;
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-md);
-  cursor: pointer;
   font-size: 0.95rem;
-  transition: background 0.2s;
-}
-.results-block button:hover {
-  background: var(--color-brand-700);
+  padding: var(--space-2) var(--space-4); /* Override base padding for smaller size */
 }
 @media (max-width: 900px) {
   .workout-flex {
@@ -790,19 +781,9 @@
 }
 
 .save-recipe-btn {
-  background: var(--color-surface);
-  border: 2px solid var(--color-brand);
-  color: var(--color-brand);
+  /* Uses base .btn-secondary styles with custom padding */
   padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-md);
-  cursor: pointer;
   font-weight: 600;
-  transition: all var(--transition-fast);
-}
-
-.save-recipe-btn:hover {
-  background: var(--color-brand);
-  color: white;
 }
 
 .save-recipe-btn.saved {

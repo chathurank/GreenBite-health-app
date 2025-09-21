@@ -70,14 +70,8 @@
 }
 .card button {
   margin-top: auto;
-  background: var(--color-brand);
-  color: #fff;
-  border: none;
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--radius-md);
-  cursor: pointer;
+  padding: var(--space-2) var(--space-4); /* Override base button padding */
   font-size: 1rem;
-  transition: all var(--transition-fast);
   position: relative;
   overflow: hidden;
 }
@@ -101,7 +95,6 @@
 }
 
 .card button:hover {
-  background: var(--color-brand-700);
   transform: translateY(-2px);
 }
 

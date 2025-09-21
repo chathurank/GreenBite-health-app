@@ -66,7 +66,7 @@ function openModal(id) {
   body.innerHTML = `
     <h2 id="${titleId}">${recipe.title}</h2>
     <div class="recipe-actions">
-      <button class="save-recipe-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveRecipe(${recipe.id})">
+      <button class="btn-secondary save-recipe-btn ${isSaved ? 'saved' : ''}" onclick="toggleSaveRecipe(${recipe.id})">
         ${isSaved ? '❤️ Saved' : '🤍 Save Recipe'}
       </button>
       <div class="recipe-meta">
