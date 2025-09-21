@@ -108,9 +108,15 @@ function startExerciseTimer(exerciseIndex, seconds, btn) {
   
   updateTimerDisplay(timerDiv, exercise.name, timeLeft);
   
+  // Immediately update button with initial time
+  btn.textContent = `${timeLeft}s remaining`;
+  
   workoutInterval = setInterval(() => {
     timeLeft--;
     updateTimerDisplay(timerDiv, exercise.name, timeLeft);
+    
+    // Update button text with countdown
+    btn.textContent = `${timeLeft}s remaining`;
     
     // Warning at 5 seconds
     if (timeLeft === 5) {
