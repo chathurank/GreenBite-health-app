@@ -989,6 +989,20 @@
   margin: 0;
 }
 
+/* Form validation styles */
+.field-error-input {
+  border-color: #e74c3c !important;
+  border-width: 2px !important;
+}
+
+.field-error {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  font-weight: 500;
+  display: block;
+}
+
 .location-info-section {
   max-width: 1200px;
   margin: var(--space-8) auto var(--space-4) auto;

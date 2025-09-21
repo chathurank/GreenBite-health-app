@@ -13,7 +13,7 @@ contactForm?.addEventListener('submit', function(e) {
   
   // Reset any previous error styles
   [nameInput, emailInput, messageInput].forEach(input => {
-    input.style.borderColor = '';
+    input.classList.remove('field-error-input');
   });
   
   // Validation
@@ -65,8 +65,7 @@ contactForm?.addEventListener('submit', function(e) {
 
 // Enhanced error display function
 function showFieldError(field, message) {
-  field.style.borderColor = '#e74c3c';
-  field.style.borderWidth = '2px';
+  field.classList.add('field-error-input');
   
   // Remove existing error messages
   const existingError = field.parentNode.querySelector('.field-error');
@@ -78,19 +77,12 @@ function showFieldError(field, message) {
   const errorDiv = document.createElement('div');
   errorDiv.className = 'field-error';
   errorDiv.textContent = message;
-  errorDiv.style.cssText = `
-    color: #e74c3c;
-    font-size: 0.9rem;
-    margin-top: 5px;
-    font-weight: 500;
-  `;
   
   field.parentNode.appendChild(errorDiv);
   
   // Remove error on focus
   field.addEventListener('focus', function() {
-    field.style.borderColor = '';
-    field.style.borderWidth = '';
+    field.classList.remove('field-error-input');
     errorDiv.remove();
   }, { once: true });
 }
