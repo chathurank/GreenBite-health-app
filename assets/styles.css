@@ -337,7 +337,7 @@
   gap: 2rem;
   justify-content: center;
   align-items: flex-start;
-  max-width: 900px;
+  max-width: var(--site-max-width);
   margin: 0 auto var(--space-7) auto;
 }
 .workout-flex .form-block {
@@ -399,7 +399,7 @@
   gap: 32px;
   justify-content: center;
   align-items: flex-start;
-  max-width: 900px;
+  max-width: var(--site-max-width);
   margin: 0 auto 40px auto;
 }
 .results-block {
@@ -730,7 +730,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
-  max-width: 1200px;
+  max-width: var(--site-max-width);
   margin: 0 auto;
   padding: 0 var(--space-4);
 }
@@ -939,7 +939,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-8);
-  max-width: 1200px;
+  max-width: var(--site-max-width);
   margin: var(--space-8) auto;
   padding: 0 var(--space-4);
   align-items: start;
@@ -985,7 +985,7 @@
 }
 
 .location-info-section {
-  max-width: 1200px;
+  max-width: var(--site-max-width);
   margin: var(--space-8) auto var(--space-4) auto;
   padding: 0 var(--space-4);
 }

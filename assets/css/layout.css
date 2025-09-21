@@ -80,14 +80,14 @@
   box-shadow: var(--shadow-md);
   text-align: center;
   margin: var(--space-8) auto var(--space-7) auto;
-  max-width: 900px;
+  max-width: var(--site-max-width);
 }
 .workout-flex, .calc-flex {
   display: flex;
   gap: 2rem;
   justify-content: center;
   align-items: flex-start;
-  max-width: 900px;
+  max-width: var(--site-max-width);
   margin: 0 auto var(--space-7) auto;
 }
 @media (max-width: 900px) {
