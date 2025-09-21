@@ -1,0 +1,16 @@
+/* Typography styles */
+h1, h2, h3 {
+  font-family: var(--font-family);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--color-brand);
+}
+h1 {
+  font-size: 2.2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.18rem;
+}

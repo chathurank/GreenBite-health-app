@@ -8,22 +8,61 @@
   <link rel="icon" href="assets/favicon.ico" />
 </head>
 <body>
-  <nav id="navbar" aria-label="Primary"></nav>
+  <nav id="navbar" aria-label="Primary" class="navbar">
+    <a href="index.html" class="logo" aria-label="GreenBite Home">
+      <img src="assets/images/logo.png" alt="GreenBite Logo" />
+    </a>
+    <button
+      class="hamburger"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      aria-controls="primary-menu"
+      type="button"
+    >
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="primary-menu" role="menubar">
+      <li role="none">
+        <a role="menuitem" href="index.html" class="nav-link">Home</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="recipes.html" class="nav-link">Healthy Recipes</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="calculator.html" class="nav-link">Calorie Calculator</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="workout.html" class="nav-link">Workout Generator</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="mindfulness.html" class="nav-link">Mindfulness</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="contact.html" class="nav-link active">Contact</a>
+      </li>
+    </ul>
+  </nav>
   <main>
     <section class="page-hero">
       <h1>Contact & Feedback</h1>
       <p>We value your feedback! Reach out to us or check our FAQ for quick answers.</p>
     </section>
     <form id="contact-form" class="form-block" novalidate>
-      <label class="sr-only" for="name">Name</label>
-      <input type="text" id="name" name="name" placeholder="Name" required autocomplete="name" />
-      <label class="sr-only" for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Email" required autocomplete="email" />
-      <label class="sr-only" for="message">Message</label>
-      <textarea id="message" name="message" placeholder="Message" required></textarea>
-      <button type="submit">Send</button>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Name" required autocomplete="name" />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Email" required autocomplete="email" />
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Message" required></textarea>
+      </div>
+  <button type="submit" class="btn-secondary">Send</button>
     </form>
-    <div id="confirmation" class="thankyou-message" role="status" aria-live="polite"></div>
+  <div id="confirmation" class="thankyou-message is-hidden" role="status" aria-live="polite"></div>
     <div id="map" role="img" aria-label="Map placeholder for GreenBite HQ">
       <!-- Embed map here -->
     </div>
@@ -34,7 +73,65 @@
       </div>
     </section>
   </main>
-  <footer></footer>
+  
+  <!-- Newsletter & Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img
+          src="assets/images/logo.png"
+          alt="GreenBite Logo"
+          class="footer-logo"
+        />
+        <p>
+          Promoting healthy living through balanced meals, exercise, and
+          mindfulness.
+        </p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><span>📘</span></a>
+          <a href="#" aria-label="TikTok"><span>🎵</span></a>
+          <a href="#" aria-label="Instagram"><span>📸</span></a>
+          <a href="#" aria-label="Telegram"><span>✈️</span></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="recipes.html">Recipes</a></li>
+          <li><a href="calculator.html">Calorie Calculator</a></li>
+        </ul>
+      </div>
+      <div class="footer-resources">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="recipes.html">Nutrition Guide</a></li>
+          <li><a href="workout.html">Workout Library</a></li>
+          <li><a href="recipes.html">Meal Plans</a></li>
+          <li><a href="contact.html">Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-newsletter">
+        <h3>Stay Updated</h3>
+        <p>Subscribe to our newsletter for healthy tips and recipes.</p>
+        <form id="newsletter-form">
+          <input
+            type="email"
+            id="newsletter-email"
+            required
+            placeholder="Enter your email"
+            autocomplete="email"
+          />
+          <button type="submit" class="btn-secondary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 GreenBite. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="assets/main.js" defer></script>
   <script src="assets/contact.js" defer></script>
 </body>
 </html>

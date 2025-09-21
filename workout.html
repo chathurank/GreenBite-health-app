@@ -8,7 +8,40 @@
   <link rel="icon" href="assets/favicon.ico" />
 </head>
 <body>
-  <nav id="navbar" aria-label="Primary"></nav>
+  <nav id="navbar" aria-label="Primary" class="navbar">
+    <a href="index.html" class="logo" aria-label="GreenBite Home">
+      <img src="assets/images/logo.png" alt="GreenBite Logo" />
+    </a>
+    <button
+      class="hamburger"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      aria-controls="primary-menu"
+      type="button"
+    >
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="primary-menu" role="menubar">
+      <li role="none">
+        <a role="menuitem" href="index.html" class="nav-link">Home</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="recipes.html" class="nav-link">Healthy Recipes</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="calculator.html" class="nav-link">Calorie Calculator</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="workout.html" class="nav-link active">Workout Generator</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="mindfulness.html" class="nav-link">Mindfulness</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="contact.html" class="nav-link">Contact</a>
+      </li>
+    </ul>
+  </nav>
   <main>
     <section class="page-hero">
       <h1>Workout Generator</h1>
@@ -16,25 +49,87 @@
     </section>
     <div class="workout-flex">
       <form id="workout-form" class="form-block" novalidate>
-        <label for="body-part">Body Part:</label>
-        <select id="body-part" name="body-part">
-          <option value="full">Full Body</option>
-          <option value="arms">Arms</option>
-          <option value="legs">Legs</option>
-          <option value="core">Core</option>
-        </select>
-        <label for="equipment">Equipment:</label>
-        <select id="equipment" name="equipment">
-          <option value="none">None</option>
-          <option value="dumbbells">Dumbbells</option>
-        </select>
-        <button type="submit">Generate Workout</button>
+        <div class="form-group">
+          <label for="body-part">Body Part:</label>
+          <select id="body-part" name="body-part">
+            <option value="full">Full Body</option>
+            <option value="arms">Arms</option>
+            <option value="legs">Legs</option>
+            <option value="core">Core</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="equipment">Equipment:</label>
+          <select id="equipment" name="equipment">
+            <option value="none">None</option>
+            <option value="dumbbells">Dumbbells</option>
+          </select>
+        </div>
+  <button type="submit" class="btn-secondary">Generate Workout</button>
       </form>
-      <div class="results-block" id="workout-plan" aria-live="polite"></div>
+  <div class="results-block is-hidden" id="workout-plan" aria-live="polite"></div>
     </div>
-    <div id="timer" role="status" aria-live="polite"></div>
+  <div id="timer" class="is-hidden" role="status" aria-live="polite"></div>
   </main>
-  <footer></footer>
+  
+  <!-- Newsletter & Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img
+          src="assets/images/logo.png"
+          alt="GreenBite Logo"
+          class="footer-logo"
+        />
+        <p>
+          Promoting healthy living through balanced meals, exercise, and
+          mindfulness.
+        </p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><span>📘</span></a>
+          <a href="#" aria-label="TikTok"><span>🎵</span></a>
+          <a href="#" aria-label="Instagram"><span>📸</span></a>
+          <a href="#" aria-label="Telegram"><span>✈️</span></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="recipes.html">Recipes</a></li>
+          <li><a href="calculator.html">Calorie Calculator</a></li>
+        </ul>
+      </div>
+      <div class="footer-resources">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="recipes.html">Nutrition Guide</a></li>
+          <li><a href="workout.html">Workout Library</a></li>
+          <li><a href="recipes.html">Meal Plans</a></li>
+          <li><a href="contact.html">Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-newsletter">
+        <h3>Stay Updated</h3>
+        <p>Subscribe to our newsletter for healthy tips and recipes.</p>
+        <form id="newsletter-form">
+          <input
+            type="email"
+            id="newsletter-email"
+            required
+            placeholder="Enter your email"
+            autocomplete="email"
+          />
+          <button type="submit" class="btn-secondary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 GreenBite. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="assets/main.js" defer></script>
   <script src="assets/workout.js" defer></script>
 </body>
 </html>

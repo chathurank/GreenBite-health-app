@@ -4,19 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GreenBite Wellness</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="assets/styles.css" />
     <link rel="icon" href="assets/favicon.ico" />
   </head>
   <body>
     <!-- Responsive Navbar -->
-    <nav id="navbar" aria-label="Primary" class="navbar">
-      <a href="#" class="logo">GreenBite</a>
+    <header id="navbar" aria-label="Primary" class="navbar">
+      <a href="index.html" class="logo" aria-label="GreenBite Home">
+        <img
+          src="assets/images/logo.png"
+          alt="GreenBite Logo"
+        />
+      </a>
       <button
         class="hamburger"
         aria-label="Toggle navigation"
@@ -54,7 +53,7 @@
           <a role="menuitem" href="contact.html" class="nav-link">Contact</a>
         </li>
       </ul>
-    </nav>
+    </header>
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-overlay">
@@ -74,36 +73,58 @@
     <!-- Newsletter & Footer -->
     <footer class="footer">
       <div class="footer-content">
+        <div class="footer-brand">
+          <img
+            src="assets/images/logo.png"
+            alt="GreenBite Logo"
+            class="footer-logo"
+          />
+          <p>
+            Promoting healthy living through balanced meals, exercise, and
+            mindfulness.
+          </p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><span>📘</span></a>
+            <a href="#" aria-label="TikTok"><span>🎵</span></a>
+            <a href="#" aria-label="Instagram"><span>📸</span></a>
+            <a href="#" aria-label="Telegram"><span>✈️</span></a>
+          </div>
+        </div>
         <div class="footer-links">
           <h3>Quick Links</h3>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="recipes.html">Healthy Recipes</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="recipes.html">Recipes</a></li>
             <li><a href="calculator.html">Calorie Calculator</a></li>
-            <li><a href="workout.html">Workout Generator</a></li>
-            <li><a href="mindfulness.html">Mindfulness</a></li>
-            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-resources">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="recipes.html">Nutrition Guide</a></li>
+            <li><a href="workout.html">Workout Library</a></li>
+            <li><a href="recipes.html">Meal Plans</a></li>
+            <li><a href="contact.html">Support</a></li>
           </ul>
         </div>
         <div class="footer-newsletter">
-          <h3>Stay Connected</h3>
+          <h3>Stay Updated</h3>
+          <p>Subscribe to our newsletter for healthy tips and recipes.</p>
           <form id="newsletter-form">
-            <label for="newsletter-email">Subscribe to our newsletter:</label>
-            <div class="newsletter-row">
-              <input
-                type="email"
-                id="newsletter-email"
-                required
-                placeholder="Your email"
-                autocomplete="email"
-              />
-              <button type="submit">Subscribe</button>
-            </div>
+            <input
+              type="email"
+              id="newsletter-email"
+              required
+              placeholder="Enter your email"
+              autocomplete="email"
+            />
+            <button type="submit" class="btn-secondary">Subscribe</button>
           </form>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 GreenBite Wellness</p>
+        <p>&copy; 2024 GreenBite. All rights reserved.</p>
       </div>
     </footer>
     <script src="assets/main.js" defer></script>

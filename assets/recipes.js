@@ -24,8 +24,20 @@ function renderRecipes(filter = "all", search = "") {
   filtered.forEach(recipe => {
     const card = document.createElement('div');
     card.className = "card";
-    card.innerHTML = `<img src="${recipe.image}" alt="${recipe.title}" style="width:100%;border-radius:8px;">` +
-      `<h3>${recipe.title}</h3><p>${recipe.description}</p><button class="view-btn" data-id="${recipe.id}">View Recipe</button>`;
+    card.innerHTML = `
+      <div style="position:relative;">
+        <img src="${recipe.image}" alt="${recipe.title}" />
+        <span class="card-category">${recipe.category}</span>
+      </div>
+      <h3>${recipe.title}</h3>
+      <p>${recipe.description}</p>
+      <div class="card-meta">
+        <span><span class="icon">⏱️</span> ${recipe.prepTime}</span>
+        <span><span class="icon">👥</span> ${recipe.servings} servings</span>
+        <span><span class="icon">${recipe.difficulty === 'Easy' ? '😊' : recipe.difficulty === 'Medium' ? '😐' : '🔥'}</span> ${recipe.difficulty}</span>
+      </div>
+      <button class="view-btn" data-id="${recipe.id}">View Recipe</button>
+    `;
     container.appendChild(card);
   });
 }

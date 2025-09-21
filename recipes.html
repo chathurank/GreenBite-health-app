@@ -9,32 +9,127 @@
 </head>
 <body>
   <!-- Navbar (reuse from index.html) -->
-  <nav id="navbar"></nav>
+  <nav id="navbar" class="navbar">
+    <a href="index.html" class="logo" aria-label="GreenBite Home">
+      <img src="assets/images/logo.png" alt="GreenBite Logo" />
+    </a>
+    <button
+      class="hamburger"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      aria-controls="primary-menu"
+      type="button"
+    >
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="primary-menu" role="menubar">
+      <li role="none">
+        <a role="menuitem" href="index.html" class="nav-link">Home</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="recipes.html" class="nav-link active">Healthy Recipes</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="calculator.html" class="nav-link">Calorie Calculator</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="workout.html" class="nav-link">Workout Generator</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="mindfulness.html" class="nav-link">Mindfulness</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="contact.html" class="nav-link">Contact</a>
+      </li>
+    </ul>
+  </nav>
   <main>
-    <section class="recipes-hero">
+    <section class="page-hero">
       <h1 id="recipes-page-title">Healthy Recipes</h1>
       <p>Discover delicious, nutritious meals for every occasion. Filter and search to find your next favorite recipe!</p>
     </section>
     <div class="filter-search" role="search">
-      <label class="sr-only" for="search">Search recipes</label>
-      <input type="text" id="search" name="search" placeholder="Search recipes..." autocomplete="off">
-      <label class="sr-only" for="category-filter">Filter by category</label>
-      <select id="category-filter" name="category">
-        <option value="all">All Categories</option>
-        <option value="breakfast">Breakfast</option>
-        <option value="lunch">Lunch</option>
-        <option value="dinner">Dinner</option>
-        <option value="snack">Snack</option>
-      </select>
+      <div class="form-group">
+        <label class="sr-only" for="search">Search recipes</label>
+        <input type="text" id="search" name="search" placeholder="Search recipes..." autocomplete="off">
+      </div>
+      <div class="form-group">
+        <label class="sr-only" for="category-filter">Filter by category</label>
+        <select id="category-filter" name="category">
+          <option value="all">All Categories</option>
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+          <option value="snack">Snack</option>
+        </select>
+      </div>
     </div>
     <div id="recipe-cards" class="recipe-grid" aria-live="polite"></div>
     <!-- Modern dialog for full recipe -->
     <dialog id="recipe-dialog" aria-labelledby="recipe-title" aria-modal="true">
-      <button id="dialog-close" aria-label="Close" class="close" type="button">&times;</button>
+  <button id="dialog-close" aria-label="Close" class="close btn-secondary" type="button">&times;</button>
       <div id="dialog-body"></div>
     </dialog>
   </main>
-  <footer></footer>
+  
+  <!-- Newsletter & Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img
+          src="assets/images/logo.png"
+          alt="GreenBite Logo"
+          class="footer-logo"
+        />
+        <p>
+          Promoting healthy living through balanced meals, exercise, and
+          mindfulness.
+        </p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><span>📘</span></a>
+          <a href="#" aria-label="TikTok"><span>🎵</span></a>
+          <a href="#" aria-label="Instagram"><span>📸</span></a>
+          <a href="#" aria-label="Telegram"><span>✈️</span></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="recipes.html">Recipes</a></li>
+          <li><a href="calculator.html">Calorie Calculator</a></li>
+        </ul>
+      </div>
+      <div class="footer-resources">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="recipes.html">Nutrition Guide</a></li>
+          <li><a href="workout.html">Workout Library</a></li>
+          <li><a href="recipes.html">Meal Plans</a></li>
+          <li><a href="contact.html">Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-newsletter">
+        <h3>Stay Updated</h3>
+        <p>Subscribe to our newsletter for healthy tips and recipes.</p>
+        <form id="newsletter-form">
+          <input
+            type="email"
+            id="newsletter-email"
+            required
+            placeholder="Enter your email"
+            autocomplete="email"
+          />
+          <button type="submit" class="btn-secondary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 GreenBite. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="assets/main.js" defer></script>
   <script src="assets/recipes.js" defer></script>
 </body>
 </html>

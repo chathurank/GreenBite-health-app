@@ -1,0 +1,100 @@
+/* Layout and utility classes */
+/* Home page hero section */
+.hero {
+  position: relative;
+  background: url("/assets/images/hero-image.png") center/cover no-repeat;
+  color: #fff;
+  padding: var(--space-8) var(--space-6) var(--space-7) var(--space-6);
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 1s;
+  min-height: 70vh;
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.36);
+  padding: var(--space-8) var(--space-7);
+  border-radius: var(--radius-3xl);
+  box-shadow: var(--shadow-strong);
+  text-align: center;
+  max-width: 900px;
+}
+
+.hero-overlay h1 {
+  font-size: 2.5rem;
+  line-height: 1.3;
+  margin-bottom: var(--space-3);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.hero-overlay p {
+  font-size: 1.18rem;
+  margin-bottom: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Health tips block */
+.health-tips {
+  margin: var(--space-7) auto;
+  max-width: 600px;
+  background: var(--color-accent-bg);
+  padding: var(--space-6) var(--space-6) var(--space-6) 4rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--color-brand);
+  position: relative;
+}
+
+.tip-icon {
+  position: absolute;
+  left: 1.2rem;
+  top: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-brand);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Page hero section for inner pages */
+.page-hero {
+  background: var(--color-bg);
+  padding: var(--space-8) var(--space-7) var(--space-7) var(--space-7);
+  border-radius: var(--radius-3xl);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  margin: var(--space-8) auto var(--space-7) auto;
+  max-width: 900px;
+}
+.workout-flex, .calc-flex {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 900px;
+  margin: 0 auto var(--space-7) auto;
+}
+@media (max-width: 900px) {
+  .workout-flex, .calc-flex {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: stretch;
+    max-width: 100vw;
+  }
+}

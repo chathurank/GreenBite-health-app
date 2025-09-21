@@ -24,6 +24,7 @@ workoutForm?.addEventListener('submit', function(e) {
     plan += `<li>${ex}${equipmentMap[equip]} <button onclick='startTimer(30, this)'>Start 30s</button></li>`;
   });
   plan += `</ul>`;
+  planDiv.classList.remove('is-hidden');
   planDiv.innerHTML = plan;
   // Move timer block to top and clear previous timer
   timerDiv.textContent = "";
@@ -33,6 +34,7 @@ workoutForm?.addEventListener('submit', function(e) {
 function startTimer(seconds, btn) {
   btn.disabled = true;
   const timerDiv = document.getElementById('timer');
+  timerDiv.classList.remove('is-hidden');
   let time = seconds;
   timerDiv.textContent = `Time left: ${time}s`;
   const interval = setInterval(() => {

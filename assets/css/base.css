@@ -1,0 +1,22 @@
+/* Utility: hide element */
+.is-hidden {
+  display: none !important;
+}
+/* Base styles and resets */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  line-height: 1.6;
+}
+
+.sr-only {
+    visibility: hidden;
+}

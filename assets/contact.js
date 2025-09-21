@@ -13,7 +13,7 @@ contactForm?.addEventListener('submit', function(e) {
   let feedback = JSON.parse(localStorage.getItem('feedbacks') || '[]');
   feedback.push({ name, email, message, date: new Date().toISOString() });
   localStorage.setItem('feedbacks', JSON.stringify(feedback));
-  document.getElementById('confirmation').textContent = 'Thank you for your feedback!';
+  alert('Thank you for your feedback!');
   contactForm.reset();
 });
 

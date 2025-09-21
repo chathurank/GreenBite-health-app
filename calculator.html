@@ -8,7 +8,40 @@
   <link rel="icon" href="assets/favicon.ico" />
 </head>
 <body>
-  <nav id="navbar" aria-label="Primary"></nav>
+  <nav id="navbar" aria-label="Primary" class="navbar">
+    <a href="index.html" class="logo" aria-label="GreenBite Home">
+      <img src="assets/images/logo.png" alt="GreenBite Logo" />
+    </a>
+    <button
+      class="hamburger"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      aria-controls="primary-menu"
+      type="button"
+    >
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="primary-menu" role="menubar">
+      <li role="none">
+        <a role="menuitem" href="index.html" class="nav-link">Home</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="recipes.html" class="nav-link">Healthy Recipes</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="calculator.html" class="nav-link active">Calorie Calculator</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="workout.html" class="nav-link">Workout Generator</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="mindfulness.html" class="nav-link">Mindfulness</a>
+      </li>
+      <li role="none">
+        <a role="menuitem" href="contact.html" class="nav-link">Contact</a>
+      </li>
+    </ul>
+  </nav>
   <main>
     <section class="page-hero">
       <h1>Calorie & Nutrition Calculator</h1>
@@ -16,31 +49,101 @@
     </section>
     <div class="calc-flex">
       <form id="calc-form" class="form-block" novalidate>
-        <label class="sr-only" for="age">Age (years)</label>
-        <input type="number" id="age" name="age" placeholder="Age (years)" required inputmode="numeric" min="0" />
-        <label class="sr-only" for="gender">Gender</label>
-        <select id="gender" name="gender">
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-        <label class="sr-only" for="height">Height (cm)</label>
-        <input type="number" id="height" name="height" placeholder="Height (cm)" required inputmode="numeric" min="0" />
-        <label class="sr-only" for="weight">Weight (kg)</label>
-        <input type="number" id="weight" name="weight" placeholder="Weight (kg)" required inputmode="numeric" min="0" />
-        <label class="sr-only" for="activity">Activity level</label>
-        <select id="activity" name="activity">
-          <option value="1.2">Sedentary</option>
-          <option value="1.375">Lightly active</option>
-          <option value="1.55">Moderately active</option>
-          <option value="1.725">Very active</option>
-          <option value="1.9">Super active</option>
-        </select>
-        <button type="submit">Calculate</button>
+        <div class="form-group">
+          <label for="age">Age (years)</label>
+          <input type="number" id="age" name="age" placeholder="Age (years)" required inputmode="numeric" min="1" />
+        </div>
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select id="gender" name="gender" required>
+            <option value="" disabled selected>Select gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="height">Height (cm)</label>
+          <input type="number" id="height" name="height" placeholder="Height (cm)" required inputmode="numeric" min="0" />
+        </div>
+        <div class="form-group">
+          <label for="weight">Weight (kg)</label>
+          <input type="number" id="weight" name="weight" placeholder="Weight (kg)" required inputmode="numeric" min="0" />
+        </div>
+        <div class="form-group">
+          <label for="activity">Activity level</label>
+          <select id="activity" name="activity" required>
+            <option value="" disabled selected>Select activity level</option>
+            <option value="1.2">Sedentary</option>
+            <option value="1.375">Lightly active</option>
+            <option value="1.55">Moderately active</option>
+            <option value="1.725">Very active</option>
+            <option value="1.9">Super active</option>
+          </select>
+        </div>
+  <button type="submit" class="btn-secondary">Calculate</button>
       </form>
-      <div id="calc-results" class="results-block" aria-live="polite"></div>
+  <div id="calc-results" class="results-block is-hidden" aria-live="polite"></div>
     </div>
   </main>
-  <footer></footer>
+  
+  <!-- Newsletter & Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <img
+          src="assets/images/logo.png"
+          alt="GreenBite Logo"
+          class="footer-logo"
+        />
+        <p>
+          Promoting healthy living through balanced meals, exercise, and
+          mindfulness.
+        </p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><span>📘</span></a>
+          <a href="#" aria-label="TikTok"><span>🎵</span></a>
+          <a href="#" aria-label="Instagram"><span>📸</span></a>
+          <a href="#" aria-label="Telegram"><span>✈️</span></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="recipes.html">Recipes</a></li>
+          <li><a href="calculator.html">Calorie Calculator</a></li>
+        </ul>
+      </div>
+      <div class="footer-resources">
+        <h3>Resources</h3>
+        <ul>
+          <li><a href="recipes.html">Nutrition Guide</a></li>
+          <li><a href="workout.html">Workout Library</a></li>
+          <li><a href="recipes.html">Meal Plans</a></li>
+          <li><a href="contact.html">Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-newsletter">
+        <h3>Stay Updated</h3>
+        <p>Subscribe to our newsletter for healthy tips and recipes.</p>
+        <form id="newsletter-form">
+          <input
+            type="email"
+            id="newsletter-email"
+            required
+            placeholder="Enter your email"
+            autocomplete="email"
+          />
+          <button type="submit" class="btn-secondary">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 GreenBite. All rights reserved.</p>
+    </div>
+  </footer>
+  <script src="assets/main.js" defer></script>
   <script src="assets/calculator.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,208 @@
+/* Mindfulness page specific styles */
+
+/* General layout improvements */
+.mindfulness-section {
+  margin: var(--space-7) auto;
+  text-align: center;
+}
+
+/* Utility classes */
+.hidden {
+  display: none !important;
+}
+
+.sound-controls {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-3);
+}
+
+/* Breathing animation circle */
+.breath-circle {
+  width: 120px;
+  height: 120px;
+  background: #2ecc71; /* Restored green background */
+  border-radius: 50%;
+  margin: var(--space-6) auto;
+  transition: transform 4s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: var(--shadow-md);
+}
+
+.breath-text {
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Breathing animation container */
+#breathing-animation {
+  text-align: center;
+  padding: var(--space-6) 0;
+  margin: var(--space-7) 0;
+}
+
+/* Side-by-side layout for timer and ambient sounds */
+.mindfulness-tools {
+  display: flex;
+  gap: var(--space-6);
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1000px;
+  margin: var(--space-7) auto;
+  padding: 0 var(--space-4);
+}
+
+.mindfulness-tools > * {
+  flex: 1;
+  max-width: 500px;
+}
+
+/* Timer tool section */
+.timer-tool-block {
+  background: var(--color-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--color-brand-light);
+  text-align: center;
+}
+
+.timer-tool-block h2 {
+  color: var(--color-brand);
+  margin-bottom: var(--space-4);
+  font-size: 1.5rem;
+}
+
+.timer-container {
+  margin-bottom: var(--space-4);
+}
+
+.timer-container input[type="number"] {
+  font-size: 1.2rem;
+  padding: var(--space-3);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-align: center;
+  max-width: 80px;
+  margin-bottom: var(--space-3);
+}
+
+.timer-display {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--color-brand);
+  margin: var(--space-4) 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.timer-display.hidden {
+  display: none;
+}
+
+/* Ambient sounds section */
+#ambient-sounds {
+  text-align: center;
+  padding: var(--space-6);
+  background: var(--color-accent-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--color-accent);
+}
+
+#ambient-sounds h2 {
+  color: var(--color-brand);
+  margin-bottom: var(--space-4);
+  font-size: 1.5rem;
+}
+
+.sound-status {
+  display: block;
+  margin-top: var(--space-3);
+  color: var(--color-muted);
+  font-weight: 500;
+  font-style: italic;
+  transition: all 0.3s ease;
+  min-height: 1.5rem; /* Prevents layout shift */
+}
+
+.sound-status.active {
+  color: var(--color-brand);
+}
+
+.sound-status.active::before {
+  content: "🎵 ";
+  margin-right: var(--space-1);
+}
+
+/* Session tracker */
+#session-tracker {
+  text-align: center;
+  margin: var(--space-6) auto;
+  padding: var(--space-4);
+  background: var(--color-success-light);
+  color: var(--color-success-dark);
+  border-radius: var(--radius-md);
+  max-width: 400px;
+  font-weight: 600;
+  border: 1px solid var(--color-success);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .mindfulness-tools {
+    flex-direction: column;
+    gap: var(--space-4);
+    margin: var(--space-4) auto;
+  }
+  
+  .timer-tool-block,
+  #ambient-sounds {
+    padding: var(--space-4);
+  }
+  
+  .timer-display {
+    font-size: 2.5rem;
+  }
+  
+  .breath-circle {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .breath-text {
+    font-size: 1.1rem;
+  }
+  
+  .sound-controls {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  
+  .timer-tool-block h2,
+  #ambient-sounds h2 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Animation states */
+.breath-circle.exhale {
+  transform: scale(1.3);
+}
+
+.breath-circle.inhale {
+  transform: scale(1);
+}

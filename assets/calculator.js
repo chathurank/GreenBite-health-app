@@ -7,6 +7,13 @@ calcForm?.addEventListener('submit', function(e) {
   const height = +document.getElementById('height').value;
   const weight = +document.getElementById('weight').value;
   const activity = +document.getElementById('activity').value;
+  const resultsDiv = document.getElementById('calc-results');
+  // Validation: check for empty or invalid fields
+  if (!age || !gender || !height || !weight || !activity) {
+    resultsDiv.classList.remove('is-hidden');
+    resultsDiv.innerHTML = `<div class="error-message" style="color:var(--color-brand);font-weight:600;">Please fill out all fields with valid values.</div>`;
+    return;
+  }
   let bmr = 0;
   if (gender === 'male') {
     bmr = 10 * weight + 6.25 * height - 5 * age + 5;
@@ -18,7 +25,8 @@ calcForm?.addEventListener('submit', function(e) {
   const carbs = Math.round((tdee * 0.5) / 4);
   const protein = Math.round((tdee * 0.2) / 4);
   const fat = Math.round((tdee * 0.3) / 9);
-  document.getElementById('calc-results').innerHTML = `
+  resultsDiv.classList.remove('is-hidden');
+  resultsDiv.innerHTML = `
     <h3>Your Results</h3>
     <div class="result-summary">
       <div><strong>BMR:</strong> ${Math.round(bmr)} kcal/day</div>

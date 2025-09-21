@@ -1,0 +1,94 @@
+.footer {
+  background: var(--color-accent-bg);
+  padding: var(--space-7) 0 0 0;
+  margin-top: var(--space-8);
+}
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-7);
+  background: var(--color-accent-bg);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-7) var(--space-8) 0 var(--space-8);
+  min-height: 180px;
+}
+.footer-brand {
+  flex: 1 1 260px;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+.footer-logo {
+  height: 48px;
+  margin-bottom: var(--space-2);
+}
+.footer-brand p {
+  margin: 0 0 var(--space-2) 0;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+.footer-social {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+.footer-social a {
+  font-size: 1.4rem;
+  color: var(--color-brand);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-social a:hover {
+  color: var(--color-brand-700);
+}
+.footer-links, .footer-resources {
+  flex: 1 1 180px;
+  min-width: 160px;
+}
+.footer-links h3, .footer-resources h3, .footer-newsletter h3 {
+  font-size: 1.08rem;
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+  color: var(--color-text);
+}
+.footer-links ul, .footer-resources ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-links ul li, .footer-resources ul li {
+  margin-bottom: 10px;
+}
+.footer-links ul li a, .footer-resources ul li a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+.footer-links ul li a:hover, .footer-resources ul li a:hover {
+  color: var(--color-brand);
+}
+.footer-newsletter {
+  flex: 1 1 260px;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+.footer-newsletter p {
+  margin: 0 0 var(--space-2) 0;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+.footer-newsletter form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
