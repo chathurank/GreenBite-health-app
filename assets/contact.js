@@ -172,49 +172,8 @@ function toggleAccordion() {
   }
 }
 
-// Map functionality
-function showMapFallback() {
-  const iframe = document.querySelector('#map iframe');
-  const fallback = document.querySelector('#map-fallback');
-  
-  if (iframe && fallback) {
-    iframe.style.display = 'none';
-    fallback.style.display = 'flex';
-  }
-}
-
-function openExternalMap() {
-  window.open('https://maps.google.com/?q=Times+Square+New+York', '_blank', 'noopener,noreferrer');
-}
-
-function getDirections() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      const lat = position.coords.latitude;
-      const lng = position.coords.longitude;
-      window.open(`https://maps.google.com/maps?saddr=${lat},${lng}&daddr=Times+Square+New+York`, '_blank', 'noopener,noreferrer');
-    }, function(error) {
-      window.open('https://maps.google.com/maps?daddr=Times+Square+New+York', '_blank', 'noopener,noreferrer');
-    });
-  } else {
-    window.open('https://maps.google.com/maps?daddr=Times+Square+New+York', '_blank', 'noopener,noreferrer');
-  }
-}
-
-// Initialize map on page load
+// Contact page functionality
 document.addEventListener('DOMContentLoaded', function() {
-  // Try to load the Google Maps iframe, fallback if it fails
-  setTimeout(() => {
-    const iframe = document.querySelector('#map iframe');
-    const fallback = document.querySelector('#map-fallback');
-    
-    if (iframe && fallback) {
-      // Check if iframe loaded successfully after 3 seconds
-      if (iframe.style.opacity === '0' || iframe.offsetHeight === 0) {
-        showMapFallback();
-      } else {
-        fallback.style.display = 'none';
-      }
-    }
-  }, 3000);
+  // Contact form is already handled above
+  console.log('Contact page loaded successfully');
 });
