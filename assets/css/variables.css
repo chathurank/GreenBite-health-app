@@ -1,4 +1,3 @@
-/* CSS Variables: colors, spacing, radius, shadows, fonts */
 :root {
   --color-brand: #009C4D;
   --color-brand-700: #27ae60;
@@ -17,8 +16,15 @@
   --color-card-shadow-strong: rgba(0, 0, 0, 0.25);
   --color-border: #ccc;
   --font-family: "Quicksand", Arial, sans-serif;
+
   /* Layout variables */
   --site-max-width: 1200px;
+  
+  /* Breakpoint variables */
+  --breakpoint-mobile: 480px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+
   /* Border radius variables */
   --radius-sm: 6px;
   --radius-md: 8px;
@@ -26,11 +32,12 @@
   --radius-xl: 12px;
   --radius-2xl: 16px;
   --radius-3xl: 18px;
-  --space-1: 5px;
+
+  --space-1: 4px;
   --space-2: 8px;
-  --space-3: 11px;
+  --space-3: 12px;
   --space-4: 16px;
-  --space-5: 19px;
+  --space-5: 20px;
   --space-6: 24px;
   --space-7: 32px;
   --space-8: 40px;

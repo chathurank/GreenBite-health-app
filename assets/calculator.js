@@ -73,23 +73,6 @@ calcForm?.addEventListener('submit', function(e) {
   const protein = Math.round(proteinCalories / 4); // 4 kcal per gram
   const fat = Math.round(fatCalories / 9); // 9 kcal per gram
   
-  // Store calculation in localStorage
-  const calculationData = {
-    timestamp: new Date().toISOString(),
-    inputs: { age, gender, height, weight, activity },
-    results: { bmr: Math.round(bmr), tdee, carbs, protein, fat }
-  };
-  
-  const calculationHistory = JSON.parse(localStorage.getItem('calculationHistory') || '[]');
-  calculationHistory.unshift(calculationData); // Add to beginning
-  
-  // Keep only last 10 calculations
-  if (calculationHistory.length > 10) {
-    calculationHistory.splice(10);
-  }
-  
-  localStorage.setItem('calculationHistory', JSON.stringify(calculationHistory));
-  
   // Display results with enhanced UI
   resultsDiv.classList.remove('is-hidden');
   resultsDiv.innerHTML = `
@@ -156,10 +139,6 @@ calcForm?.addEventListener('submit', function(e) {
         ${getPersonalizedRecommendations(bmr, tdee, age, gender)}
       </ul>
     </div>
-    
-    <button class="save-results-btn" onclick="saveResultsToProfile()">
-      Save to Profile
-    </button>
   `;
   
   // Animate progress bars
@@ -182,7 +161,7 @@ calcForm?.addEventListener('submit', function(e) {
   
   // Show success message
   if (typeof window.showCustomAlert === 'function') {
-    window.showCustomAlert('Calculation complete! Results saved to your profile.', 'success');
+    window.showCustomAlert('Calculation complete!', 'success');
   }
 });
 
@@ -239,62 +218,4 @@ function getPersonalizedRecommendations(bmr, tdee, age, gender) {
   recommendations.push('<li>Consider meal prep to help meet your nutrition goals.</li>');
   
   return recommendations.join('');
-}
-
-// Save results to user profile
-function saveResultsToProfile() {
-  const userProfile = JSON.parse(localStorage.getItem('userProfile') || '{}');
-  const latestCalculation = JSON.parse(localStorage.getItem('calculationHistory') || '[]')[0];
-  
-  if (latestCalculation) {
-    userProfile.lastCalculation = latestCalculation;
-    userProfile.profileUpdated = new Date().toISOString();
-    
-    localStorage.setItem('userProfile', JSON.stringify(userProfile));
-    
-    if (typeof window.showCustomAlert === 'function') {
-      window.showCustomAlert('Results saved to your profile!', 'success');
-    } else {
-      alert('Results saved to your profile!');
-    }
-  }
-}
-
-// Load previous calculation on page load
-document.addEventListener('DOMContentLoaded', function() {
-  const calculationHistory = JSON.parse(localStorage.getItem('calculationHistory') || '[]');
-  
-  if (calculationHistory.length > 0) {
-    const lastCalculation = calculationHistory[0];
-    const loadPreviousDiv = document.createElement('div');
-    loadPreviousDiv.className = 'load-previous';
-    loadPreviousDiv.innerHTML = `
-      <p>Previous calculation from ${new Date(lastCalculation.timestamp).toLocaleDateString()}</p>
-      <button onclick="loadPreviousCalculation()" class="btn-secondary">Load Previous Values</button>
-    `;
-    
-    calcForm.parentNode.insertBefore(loadPreviousDiv, calcForm);
-  }
-});
-
-function loadPreviousCalculation() {
-  const calculationHistory = JSON.parse(localStorage.getItem('calculationHistory') || '[]');
-  
-  if (calculationHistory.length > 0) {
-    const lastCalculation = calculationHistory[0];
-    const inputs = lastCalculation.inputs;
-    
-    document.getElementById('age').value = inputs.age;
-    document.getElementById('gender').value = inputs.gender;
-    document.getElementById('height').value = inputs.height;
-    document.getElementById('weight').value = inputs.weight;
-    document.getElementById('activity').value = inputs.activity;
-    
-    if (typeof window.showCustomAlert === 'function') {
-      window.showCustomAlert('Previous values loaded successfully!', 'success');
-    }
-    
-    // Remove the load previous section
-    document.querySelector('.load-previous').remove();
-  }
 }

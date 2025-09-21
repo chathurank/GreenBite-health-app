@@ -90,15 +90,21 @@ function openModal(id) {
       </div>
     </div>
     
-    <h4>Ingredients</h4>
-    <ul class="ingredients-list">
-      ${recipe.ingredients.map(i => `<li>${i}</li>`).join('')}
-    </ul>
-    
-    <h4>Instructions</h4>
-    <ol class="steps-list">
-      ${recipe.steps.map((s, index) => `<li><span class="step-number">${index + 1}</span>${s}</li>`).join('')}
-    </ol>
+    <div class="recipe-content-container">
+      <div class="recipe-content-section">
+        <h4>Ingredients</h4>
+        <ul class="ingredients-list">
+          ${recipe.ingredients.map(i => `<li>${i}</li>`).join('')}
+        </ul>
+      </div>
+      
+      <div class="recipe-content-section">
+        <h4>Instructions</h4>
+        <ol class="steps-list">
+          ${recipe.steps.map((s, index) => `<li><span class="step-number">${index + 1}</span>${s}</li>`).join('')}
+        </ol>
+      </div>
+    </div>
     
     <h4>Nutrition Information</h4>
     <table class="nutrition-table">

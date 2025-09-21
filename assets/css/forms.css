@@ -61,3 +61,7 @@ textarea:focus {
   width: 100%;
   margin-top: 8px;
 }
+
+.calc-form-block {
+  max-width: 50%;
+}
