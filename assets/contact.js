@@ -172,31 +172,49 @@ function toggleAccordion() {
   }
 }
 
-// Initialize map placeholder
-document.addEventListener('DOMContentLoaded', function() {
-  const mapDiv = document.getElementById('map');
-  if (mapDiv) {
-    mapDiv.innerHTML = `
-      <div style="
-        width: 100%;
-        height: 300px;
-        background: linear-gradient(135deg, var(--color-accent-bg) 0%, var(--color-brand-light) 100%);
-        border-radius: var(--radius-lg);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--color-brand);
-        font-weight: 600;
-        font-size: 1.1rem;
-        text-align: center;
-        padding: var(--space-4);
-        margin: var(--space-7) auto;
-        border: 2px solid var(--color-brand);
-        box-shadow: var(--shadow-md);
-      ">
-        📍 GreenBite HQ<br>
-        <small style="font-weight: 400; opacity: 0.8;">123 Wellness Street, Health City, HC 12345</small>
-      </div>
-    `;
+// Map functionality
+function showMapFallback() {
+  const iframe = document.querySelector('#map iframe');
+  const fallback = document.querySelector('#map-fallback');
+  
+  if (iframe && fallback) {
+    iframe.style.display = 'none';
+    fallback.style.display = 'flex';
   }
+}
+
+function openExternalMap() {
+  window.open('https://maps.google.com/?q=Times+Square+New+York', '_blank', 'noopener,noreferrer');
+}
+
+function getDirections() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+      window.open(`https://maps.google.com/maps?saddr=${lat},${lng}&daddr=Times+Square+New+York`, '_blank', 'noopener,noreferrer');
+    }, function(error) {
+      window.open('https://maps.google.com/maps?daddr=Times+Square+New+York', '_blank', 'noopener,noreferrer');
+    });
+  } else {
+    window.open('https://maps.google.com/maps?daddr=Times+Square+New+York', '_blank', 'noopener,noreferrer');
+  }
+}
+
+// Initialize map on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Try to load the Google Maps iframe, fallback if it fails
+  setTimeout(() => {
+    const iframe = document.querySelector('#map iframe');
+    const fallback = document.querySelector('#map-fallback');
+    
+    if (iframe && fallback) {
+      // Check if iframe loaded successfully after 3 seconds
+      if (iframe.style.opacity === '0' || iframe.offsetHeight === 0) {
+        showMapFallback();
+      } else {
+        fallback.style.display = 'none';
+      }
+    }
+  }, 3000);
 });
