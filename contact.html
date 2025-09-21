@@ -47,27 +47,37 @@
       <h1>Contact & Feedback</h1>
       <p>We value your feedback! Reach out to us or check our FAQ for quick answers.</p>
     </section>
-    <form id="contact-form" class="form-block" novalidate>
-      <div class="form-group">
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name" placeholder="Name" required autocomplete="name" />
+    
+    <div class="contact-container">
+      <div class="contact-form-section">
+        <h2>Send us a Message</h2>
+        <form id="contact-form" class="form-block" novalidate>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Name" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" required autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Message" required></textarea>
+          </div>
+          <button type="submit" class="btn-secondary">Send</button>
+        </form>
+        <div id="confirmation" class="thankyou-message is-hidden" role="status" aria-live="polite"></div>
       </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Email" required autocomplete="email" />
+      
+      <div class="map-section" aria-labelledby="map-title">
+        <h2 id="map-title">Visit Our HQ</h2>
+        <div id="map" role="img" aria-label="GreenBite HQ Location Map">
+          <!-- Embed your Google Map here -->
+        </div>
       </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Message" required></textarea>
-      </div>
-  <button type="submit" class="btn-secondary">Send</button>
-    </form>
-  <div id="confirmation" class="thankyou-message is-hidden" role="status" aria-live="polite"></div>
-    <section class="map-section" aria-labelledby="map-title">
-      <h2 id="map-title">Visit Our HQ</h2>
-      <div id="map" role="img" aria-label="GreenBite HQ Location Map">
-        <!-- Embed your Google Map here -->
-      </div>
+    </div>
+    
+    <section class="location-info-section">
       <div class="location-info">
         <div class="location-details">
           <h3>🏢 GreenBite Headquarters</h3>
